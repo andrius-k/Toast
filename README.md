@@ -17,10 +17,7 @@ This library currently allow you to:
 
 ## Screenshots
 
-![Alt text](etc/images/sample1.png?raw=true "Sample 1")
-![Alt text](etc/images/sample2.png?raw=true "Sample 2")
-![Alt text](etc/images/sample3.png?raw=true "Sample 3")
-![Alt text](etc/images/sample4.png?raw=true "Sample 4")
+![Alt text](etc/images/Sample.png?raw=true "Toast Sample")
 
 ## Code samples
 
