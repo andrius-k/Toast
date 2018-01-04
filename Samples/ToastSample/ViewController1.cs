@@ -88,28 +88,30 @@ namespace ToastSample
         private void ShowSampleSingleLine()
         {
             _current = Toast.MakeToast(_message)
-                 .SetPosition(_position)
-                 .SetDuration(_duration)
-                 .SetShowShadow(_showShadow)
-                 .SetAnimator(_animator)
-                 .SetParentController(_parentController)
-                 .SetBlockTouches(_blockTouches)
-                 .SetAutoDismiss(_autoDismiss)
-                 .Show();
+                            .SetPosition(_position)
+                            .SetDuration(_duration)
+                            .SetShowShadow(_showShadow)
+                            .SetAnimator(_animator)
+                            .SetParentController(_parentController)
+                            .SetBlockTouches(_blockTouches)
+                            .SetAutoDismiss(_autoDismiss)
+                            .SetDismissButtonTitle("Dismiss")
+                            .Show();
         }
 
         private void ShowSampleWithTitle()
         {
             _current = Toast.MakeToast(_message)
-                 .SetTitle(ToastTitle)
-                 .SetPosition(_position)
-                 .SetDuration(_duration)
-                 .SetShowShadow(_showShadow)
-                 .SetAnimator(_animator)
-                 .SetParentController(_parentController)
-                 .SetBlockTouches(_blockTouches)
-                 .SetAutoDismiss(_autoDismiss)
-                 .Show();
+                            .SetTitle(ToastTitle)
+                            .SetPosition(_position)
+                            .SetDuration(_duration)
+                            .SetShowShadow(_showShadow)
+                            .SetAnimator(_animator)
+                            .SetParentController(_parentController)
+                            .SetBlockTouches(_blockTouches)
+                            .SetAutoDismiss(_autoDismiss)
+                            .SetDismissButtonTitle("Dismiss")
+                            .Show();
         }
     }
 }

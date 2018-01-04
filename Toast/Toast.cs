@@ -15,6 +15,7 @@ namespace GlobalToast
         public UIViewController ParentController { get; protected set; }
         public bool BlockTouches { get; protected set; }
         public bool AutoDismiss { get; protected set; } = true;
+        public string DismissButtonTitle { get; protected set; } = "Dismiss";
 
         public ToastAppearance Appearance { get; protected set; }
         private static ToastAppearance _globalAppearance = new ToastAppearance();
@@ -192,6 +193,15 @@ namespace GlobalToast
             AutoDismiss = autoDismiss;
             if(autoDismiss == false)
                 BlockTouches = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the dismiss button title.
+        /// </summary>
+        public Toast SetDismissButtonTitle(string title)
+        {
+            DismissButtonTitle = title;
             return this;
         }
 

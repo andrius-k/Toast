@@ -76,6 +76,7 @@ namespace ToastSample
 
             cell.TextLabel.Text = item.Title;
             cell.SelectionStyle = UITableViewCellSelectionStyle.Default;
+            cell.AccessoryView = null;
 
             if(item.IsOn != null)
             {

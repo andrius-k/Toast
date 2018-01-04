@@ -17,7 +17,7 @@
                         <viewLayoutGuide key="safeArea" id="331"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="31687" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
-                                <rect key="frame" x="20" y="78" width="374" height="81.5"/>
+                                <rect key="frame" x="16" y="80" width="382" height="81.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -25,9 +25,9 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint id="31688" firstItem="31687" firstAttribute="leading" secondItem="331" secondAttribute="leading" constant="20"/>
-                            <constraint id="31689" firstItem="31687" firstAttribute="top" secondItem="331" secondAttribute="top" constant="14"/>
-                            <constraint id="31690" firstItem="331" firstAttribute="trailing" secondItem="31687" secondAttribute="trailing" constant="20"/>
+                            <constraint id="31688" firstItem="31687" firstAttribute="leading" secondItem="331" secondAttribute="leading" constant="16"/>
+                            <constraint id="31689" firstItem="31687" firstAttribute="top" secondItem="331" secondAttribute="top" constant="16"/>
+                            <constraint id="31690" firstItem="331" firstAttribute="trailing" secondItem="31687" secondAttribute="trailing" constant="16"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -133,7 +133,7 @@
                         <viewLayoutGuide key="safeArea" id="32941"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="35079" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
-                                <rect key="frame" x="20" y="78" width="374" height="101.5"/>
+                                <rect key="frame" x="16" y="80" width="382" height="101.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -141,9 +141,9 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint id="35080" firstItem="35079" firstAttribute="leading" secondItem="32941" secondAttribute="leading" constant="20"/>
-                            <constraint id="35081" firstItem="35079" firstAttribute="top" secondItem="32941" secondAttribute="top" constant="14"/>
-                            <constraint id="35082" firstItem="32941" firstAttribute="trailing" secondItem="35079" secondAttribute="trailing" constant="20"/>
+                            <constraint id="35080" firstItem="35079" firstAttribute="leading" secondItem="32941" secondAttribute="leading" constant="16"/>
+                            <constraint id="35081" firstItem="35079" firstAttribute="top" secondItem="32941" secondAttribute="top" constant="16"/>
+                            <constraint id="35082" firstItem="32941" firstAttribute="trailing" secondItem="35079" secondAttribute="trailing" constant="16"/>
                         </constraints>
                     </view>
                 </viewController>

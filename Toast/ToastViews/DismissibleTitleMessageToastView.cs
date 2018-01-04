@@ -11,6 +11,15 @@ namespace GlobalToast.ToastViews
         {
         }
 
+        /// <summary>
+        /// Gets the maximum width of the dismiss button.
+        /// Possible values 0 to 1.
+        /// </summary>
+        protected virtual nfloat DismissButtonMaxWidth
+        {
+            get => 0.5f;
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -18,8 +27,9 @@ namespace GlobalToast.ToastViews
             DismissButton = new UIButton(UIButtonType.System);
             DismissButton.TitleLabel.Font = Toast.Appearance.DismissButtonFont;
             DismissButton.SetTitleColor(Toast.Appearance.DismissButtonColor, UIControlState.Normal);
-            DismissButton.SetTitle("Dismiss", UIControlState.Normal);
+            DismissButton.SetTitle(Toast.DismissButtonTitle, UIControlState.Normal);
             DismissButton.TranslatesAutoresizingMaskIntoConstraints = false;
+            DismissButton.TitleLabel.LineBreakMode = Toast.Appearance.DismissButtonLineBreakMode;
             AddSubview(DismissButton);
         }
 
@@ -36,6 +46,9 @@ namespace GlobalToast.ToastViews
 
             DismissButton.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
             DismissButton.SafeCenterYAnchor().ConstraintEqualTo(this.SafeCenterYAnchor()).Active = true;
+            // The following constraint makes sure that button is not wider than specified amount of available width
+            DismissButton.SafeWidthAnchor().ConstraintLessThanOrEqualTo(this.SafeWidthAnchor(), DismissButtonMaxWidth, 0f).Active = true;
+
             DismissButton.SetContentCompressionResistancePriority(
                 MessageLabel.ContentCompressionResistancePriority(UILayoutConstraintAxis.Horizontal) + 10,
                 UILayoutConstraintAxis.Horizontal);

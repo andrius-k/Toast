@@ -8,10 +8,11 @@ namespace GlobalToast
         public UIColor MessageColor { get; set; } = UIColor.White;
         public UIColor TitleColor { get; set; } = UIColor.White;
         public UIColor DismissButtonColor { get; set; } = UIColor.FromRGB(255, 75, 75);
-        public UIFont MessageFont = UIFont.SystemFontOfSize(16f, UIFontWeight.Regular);
-        public UIFont TitleFont = UIFont.SystemFontOfSize(16f, UIFontWeight.Medium);
-        public UIFont DismissButtonFont = UIFont.SystemFontOfSize(16f, UIFontWeight.Regular);
-        public UITextAlignment MessageTextAlignment = UITextAlignment.Left;
+        public UIFont MessageFont { get; set; } = UIFont.SystemFontOfSize(16f, UIFontWeight.Regular);
+        public UIFont TitleFont { get; set; } = UIFont.SystemFontOfSize(16f, UIFontWeight.Medium);
+        public UIFont DismissButtonFont { get; set; } = UIFont.SystemFontOfSize(16f, UIFontWeight.Regular);
+        public UILineBreakMode DismissButtonLineBreakMode { get; set; } = UILineBreakMode.MiddleTruncation;
+        public UITextAlignment MessageTextAlignment { get; set; } = UITextAlignment.Left;
         public nfloat CornerRadius { get; set; } = 5;
     }
 }
