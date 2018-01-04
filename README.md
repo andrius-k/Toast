@@ -30,7 +30,7 @@ Toast.ShowToast("This is a message", "Title");
 
 // More configurations
 Toast.MakeToast("This is a message")
-	 .SetTitle("Title")
+     .SetTitle("Title")
      .SetPosition(ToastPosition.Top) // Default is Bottom
      .SetDuration(ToastDuration.Long) // Default is Regular
      .SetShowShadow(false) // Default is true
@@ -54,8 +54,8 @@ Toast.GlobalAppearance.TitleFont = UIFont.SystemFontOfSize(16, UIFontWeight.Ligh
 // Or you can replace entire objects
 Toast.GlobalAppearance = new ToastAppearance
 {
-	Color = UIColor.Blue,
-	CornerRadius = 4
+    Color = UIColor.Blue,
+    CornerRadius = 4
 };
 ```
 
