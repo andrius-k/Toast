@@ -79,3 +79,8 @@ If toast is auto dismissing calling `Dismiss();` method will have no effect.
 ## Backwards compatibility 
 
 Tested on iOS 10 and 11. Should work on previous versions as well.
+
+## Setup
+
+Available on NuGet:
+* [Toast](https://www.nuget.org/packages/Toast.iOS/)
