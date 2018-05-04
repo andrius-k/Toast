@@ -12,7 +12,7 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>Toast.iOS</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>Andrius Kirilovas</Authors>
     <Description>Toast messages for Xamarin.iOS. It is possible to add toast to KeyWindow of the app so it is presented even during view controller transitions.</Description>
     <PackageProjectUrl>https://github.com/andrius-k/Toast</PackageProjectUrl>

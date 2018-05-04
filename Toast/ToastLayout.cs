@@ -15,6 +15,7 @@ namespace GlobalToast
         public nfloat MarginLeading { get; set; } = 10.0f;
         public nfloat MarginTop { get; set; } = 10.0f;
         public nfloat MarginBottom { get; set; } = 10.0f;
+        public nfloat MarginCenter { get; set; } = 0.0f;
 
         public nfloat Spacing { get; set; } = 10.0f;
     }

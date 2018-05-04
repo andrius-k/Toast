@@ -25,6 +25,7 @@ namespace ToastSample
 
         public ViewController1 (IntPtr handle) : base (handle)
         {
+            
         }
 
         public override void ViewDidLoad()
@@ -63,9 +64,6 @@ namespace ToastSample
                     case SampleAction.SettingsLongDuration:
                         _duration = isOn ? ToastDuration.Long : ToastDuration.Regular;
                         break;
-                    case SampleAction.SettingsPossitionTop:
-                        _position = isOn ? ToastPosition.Top : ToastPosition.Bottom;
-                        break;
                     case SampleAction.SettingsLongMessage:
                         _message = isOn ? LongMessage : ShortMessage;
                         break;
@@ -82,36 +80,44 @@ namespace ToastSample
                         _autoDismiss = isOn;
                         break;
                 }
+            }, action =>
+            {
+                switch (action)
+                {
+                    case SampleAction.SettingsPossitionBottom:
+                        _position = ToastPosition.Bottom;
+                        break;
+                    case SampleAction.SettingsPossitionTop:
+                        _position = ToastPosition.Top;
+                        break;
+                    case SampleAction.SettingsPossitionCenter:
+                        _position = ToastPosition.Center;
+                        break;
+                }
             });
         }
 
         private void ShowSampleSingleLine()
         {
-            _current = Toast.MakeToast(_message)
-                            .SetPosition(_position)
-                            .SetDuration(_duration)
-                            .SetShowShadow(_showShadow)
-                            .SetAnimator(_animator)
-                            .SetParentController(_parentController)
-                            .SetBlockTouches(_blockTouches)
-                            .SetAutoDismiss(_autoDismiss)
-                            .SetDismissButtonTitle("Dismiss")
-                            .Show();
+            _current = CreateToast().Show();
         }
 
         private void ShowSampleWithTitle()
         {
-            _current = Toast.MakeToast(_message)
-                            .SetTitle(ToastTitle)
-                            .SetPosition(_position)
-                            .SetDuration(_duration)
-                            .SetShowShadow(_showShadow)
-                            .SetAnimator(_animator)
-                            .SetParentController(_parentController)
-                            .SetBlockTouches(_blockTouches)
-                            .SetAutoDismiss(_autoDismiss)
-                            .SetDismissButtonTitle("Dismiss")
-                            .Show();
+            _current = CreateToast().SetTitle(ToastTitle).Show();
+        }
+
+        private Toast CreateToast()
+        {
+            return Toast.MakeToast(_message)
+                        .SetPosition(_position)
+                        .SetDuration(_duration)
+                        .SetShowShadow(_showShadow)
+                        .SetAnimator(_animator)
+                        .SetParentController(_parentController)
+                        .SetBlockTouches(_blockTouches)
+                        .SetAutoDismiss(_autoDismiss)
+                        .SetDismissButtonTitle("Dismiss");
         }
     }
 }

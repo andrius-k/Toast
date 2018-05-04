@@ -1,13 +1,15 @@
 ﻿using System;
 using Foundation;
 using UIKit;
+using System.Linq;
 namespace ToastSample
 {
     public class SamplesTableViewSource : UITableViewSource
     {
         private const string _cellId = "sampleCell";
         private Action<SampleAction> _itemClicked;
-        private Action<SampleAction, bool> _settingChanged;
+        private Action<SampleAction, bool> _toggleChanged;
+        private Action<SampleAction> _settingChanged;
 
         private TableSection[] _data =
         {
@@ -18,7 +20,7 @@ namespace ToastSample
                 {
                     new TableItem("Inside Controller", SampleAction.SettingsInsideController, false),
                     new TableItem("Long Duration", SampleAction.SettingsLongDuration, false),
-                    new TableItem("Position Top", SampleAction.SettingsPossitionTop, false),
+                    new TableItem("Position", (SampleAction.SettingsPossitionBottom, "Bottom"), (SampleAction.SettingsPossitionTop, "Top"), (SampleAction.SettingsPossitionCenter, "Center")),
                     new TableItem("Long Message", SampleAction.SettingsLongMessage, false),
                     new TableItem("Remove Shadow", SampleAction.SettingsRemoveShadow, false),
                     new TableItem("Scale Animation", SampleAction.SettingsScaleAnimation, false),
@@ -45,9 +47,10 @@ namespace ToastSample
             },
         };
 
-        public SamplesTableViewSource(Action<SampleAction> itemClicked, Action<SampleAction, bool> settingChanged)
+        public SamplesTableViewSource(Action<SampleAction> itemClicked, Action<SampleAction, bool> toggleChanged, Action<SampleAction> settingChanged)
         {
             _itemClicked = itemClicked;
+            _toggleChanged = toggleChanged;
             _settingChanged = settingChanged;
         }
 
@@ -78,18 +81,33 @@ namespace ToastSample
             cell.SelectionStyle = UITableViewCellSelectionStyle.Default;
             cell.AccessoryView = null;
 
-            if(item.IsOn != null)
+            if(item.ItemType == TableItemType.Toggle)
             {
                 var toggle = new UISwitch();
-                toggle.On = item.IsOn.Value;
+                toggle.On = item.ToggleIsOn;
                 toggle.ValueChanged += (sender, e) => 
                 {
-                    item.IsOn = toggle.On;
-                    _settingChanged?.Invoke(item.Action, item.IsOn.Value);
+                    item.ToggleIsOn = toggle.On;
+                    _toggleChanged?.Invoke(item.Action, item.ToggleIsOn);
                 };
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
                 cell.AccessoryView = toggle;
             }
+            else if(item.ItemType == TableItemType.MultipleActions)
+            {
+                var segmentedControl = new UISegmentedControl(item.ActionsAndTitles.Select(t => t.Item2).ToArray());
+                segmentedControl.SelectedSegment = item.SelectedAction;
+                segmentedControl.ValueChanged += (sender, e) => 
+                {
+                    int selectedSegment = (int)segmentedControl.SelectedSegment;
+                    item.SelectedAction = selectedSegment;
+                    _settingChanged?.Invoke(item.ActionsAndTitles[selectedSegment].Item1);
+                };
+                cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                cell.AccessoryView = segmentedControl;
+            }
+
+            //cell.AccessoryView = new UISegmentedControl("Top", "Bottom", "Center");
 
             return cell;
         }

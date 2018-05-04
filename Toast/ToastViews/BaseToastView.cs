@@ -10,6 +10,7 @@ namespace GlobalToast.ToastViews
         public NSLayoutConstraint LeadingContraint { get; protected set; }
         public NSLayoutConstraint TrailingContraint { get; protected set; }
         public NSLayoutConstraint CenterXContraint { get; protected set; }
+        public NSLayoutConstraint CenterYContraint { get; protected set; }
 
         public Action DismissAction { get; set; }
 
@@ -60,11 +61,28 @@ namespace GlobalToast.ToastViews
             {
                 BottomContraint = this.SafeBottomAnchor().ConstraintEqualTo(GetBottomAnchor(), -Toast.Layout.MarginBottom);
                 BottomContraint.Active = true;
+
+                TopContraint = this.SafeTopAnchor().ConstraintGreaterThanOrEqualTo(GetTopAnchor(), Toast.Layout.MarginTop);
+                TopContraint.Active = true;
             }
             else if(Toast.Position == ToastPosition.Top)
             {
                 TopContraint = this.SafeTopAnchor().ConstraintEqualTo(GetTopAnchor(), Toast.Layout.MarginTop);
                 TopContraint.Active = true;
+
+                BottomContraint = this.SafeBottomAnchor().ConstraintLessThanOrEqualTo(GetBottomAnchor(), -Toast.Layout.MarginBottom);
+                BottomContraint.Active = true;
+            }
+            else if (Toast.Position == ToastPosition.Center)
+            {
+                CenterYContraint = this.SafeCenterYAnchor().ConstraintEqualTo(GetCenterYAnchor(), Toast.Layout.MarginCenter);
+                CenterYContraint.Active = true;
+
+                TopContraint = this.SafeTopAnchor().ConstraintGreaterThanOrEqualTo(GetTopAnchor(), Toast.Layout.MarginTop);
+                TopContraint.Active = true;
+
+                BottomContraint = this.SafeBottomAnchor().ConstraintLessThanOrEqualTo(GetBottomAnchor(), -Toast.Layout.MarginBottom);
+                BottomContraint.Active = true;
             }
             
             LeadingContraint = this.SafeLeadingAnchor().ConstraintGreaterThanOrEqualTo(ParentView.SafeLeadingAnchor(), Toast.Layout.MarginLeading);
@@ -83,6 +101,9 @@ namespace GlobalToast.ToastViews
             
         }
 
+        /// <summary>
+        /// Adds the shadow on the frame.
+        /// </summary>
         protected virtual void DropShadowOnFrame()
         {
             Layer.ShadowColor = UIColor.Black.CGColor;
@@ -119,6 +140,22 @@ namespace GlobalToast.ToastViews
             else
             {
                 return Toast.ParentController.BottomLayoutGuide.GetTopAnchor();
+            }
+        }
+
+        /// <summary>
+        /// If running on pre-iOS 11 and ParentController is set, returns CenterYAnchor of ParentController.
+        /// Otherwise returns SafeCenterYAnchor of ParentView.
+        /// </summary>
+        protected virtual NSLayoutYAxisAnchor GetCenterYAnchor()
+        {
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0) || Toast.ParentController == null)
+            {
+                return ParentView.SafeCenterYAnchor();
+            }
+            else
+            {
+                return Toast.ParentController.View.CenterYAnchor;
             }
         }
 
