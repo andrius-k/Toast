@@ -16,6 +16,8 @@
     <Authors>Andrius Kirilovas</Authors>
     <Description>Toast messages for Xamarin.iOS. It is possible to add toast to KeyWindow of the app so it is presented even during view controller transitions.</Description>
     <PackageProjectUrl>https://github.com/andrius-k/Toast</PackageProjectUrl>
+    <PackageReleaseNotes>Added ability to display a toast in the middle of the screen using ToastPosition.Center.</PackageReleaseNotes>
+    <Summary>Toast messages for Xamarin.iOS</Summary>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
