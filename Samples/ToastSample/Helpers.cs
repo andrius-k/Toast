@@ -87,8 +87,10 @@ namespace ToastSample
         SettingsScaleAnimation,
         SettingsBlockTouches,
         SettingsAutoDismiss,
+        SettingsProgressIndicator,
         SampleSingleMessage,
         SampleMessageWithTitle,
+        SampleProgressIndicator,
         NavigationOpenController,
     }
 

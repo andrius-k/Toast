@@ -30,21 +30,23 @@ namespace GlobalToast.ToastViews
             DismissButton.SetTitle(Toast.DismissButtonTitle, UIControlState.Normal);
             DismissButton.TranslatesAutoresizingMaskIntoConstraints = false;
             DismissButton.TitleLabel.LineBreakMode = Toast.Appearance.DismissButtonLineBreakMode;
+            DismissButton.TouchUpInside += DismissButton_TouchUpInside;
+            DismissButton.TranslatesAutoresizingMaskIntoConstraints = false;
             AddSubview(DismissButton);
         }
 
         protected override void ConstrainChildren()
         {
-            TitleLabel.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(DismissButton.SafeLeadingAnchor(), -Toast.Layout.Spacing).Active = true;
-            TitleLabel.SafeLeadingAnchor().ConstraintGreaterThanOrEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            TitleLabel.SafeTrailingAnchor().ConstraintEqualTo(DismissButton.SafeLeadingAnchor(), -Toast.Layout.Spacing).Active = true;
+            TitleLabel.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
             TitleLabel.SafeTopAnchor().ConstraintEqualTo(this.SafeTopAnchor(), Toast.Layout.PaddingTop).Active = true;
             TitleLabel.SafeBottomAnchor().ConstraintEqualTo(MessageLabel.SafeTopAnchor(), -Toast.Layout.Spacing).Active = true;
 
-            MessageLabel.SafeLeadingAnchor().ConstraintGreaterThanOrEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
-            MessageLabel.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(DismissButton.SafeLeadingAnchor(), -Toast.Layout.Spacing).Active = true;
+            MessageLabel.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            MessageLabel.SafeTrailingAnchor().ConstraintEqualTo(DismissButton.SafeLeadingAnchor(), -Toast.Layout.Spacing).Active = true;
             MessageLabel.SafeBottomAnchor().ConstraintEqualTo(this.SafeBottomAnchor(), -Toast.Layout.PaddingBottom).Active = true;
 
-            DismissButton.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
+            DismissButton.SafeTrailingAnchor().ConstraintEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
             DismissButton.SafeCenterYAnchor().ConstraintEqualTo(this.SafeCenterYAnchor()).Active = true;
             // The following constraint makes sure that button is not wider than specified amount of available width
             DismissButton.SafeWidthAnchor().ConstraintLessThanOrEqualTo(this.SafeWidthAnchor(), DismissButtonMaxWidth, 0f).Active = true;
@@ -52,7 +54,6 @@ namespace GlobalToast.ToastViews
             DismissButton.SetContentCompressionResistancePriority(
                 MessageLabel.ContentCompressionResistancePriority(UILayoutConstraintAxis.Horizontal) + 10,
                 UILayoutConstraintAxis.Horizontal);
-            DismissButton.TouchUpInside += DismissButton_TouchUpInside;
         }
 
         private void DismissButton_TouchUpInside(object sender, EventArgs e)

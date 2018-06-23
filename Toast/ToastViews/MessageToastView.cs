@@ -18,7 +18,6 @@ namespace GlobalToast.ToastViews
             MessageLabel.Text = Toast.Message;
             MessageLabel.Font = Toast.Appearance.MessageFont;
             MessageLabel.TextColor = Toast.Appearance.MessageColor;
-            MessageLabel.TextAlignment = UITextAlignment.Center;
             MessageLabel.Lines = 0;
             MessageLabel.AdjustsFontSizeToFitWidth = true;
             MessageLabel.MinimumFontSize = 10f;
@@ -31,8 +30,8 @@ namespace GlobalToast.ToastViews
         {
             base.ConstrainChildren();
 
-            MessageLabel.SafeLeadingAnchor().ConstraintGreaterThanOrEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
-            MessageLabel.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
+            MessageLabel.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            MessageLabel.SafeTrailingAnchor().ConstraintEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
             MessageLabel.SafeBottomAnchor().ConstraintEqualTo(this.SafeBottomAnchor(), -Toast.Layout.PaddingBottom).Active = true;
             MessageLabel.SafeTopAnchor().ConstraintEqualTo(this.SafeTopAnchor(), Toast.Layout.PaddingTop).Active = true;
         }

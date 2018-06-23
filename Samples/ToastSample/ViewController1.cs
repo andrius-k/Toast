@@ -3,6 +3,7 @@ using UIKit;
 using GlobalToast;
 using GlobalToast.Animation;
 using GlobalToast.ToastViews;
+using System.Collections.Generic;
 
 namespace ToastSample
 {
@@ -12,7 +13,7 @@ namespace ToastSample
         private const string LongMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
         private const string ToastTitle = "This is a message!";
 
-        private Toast _current;
+        private Stack<Toast> _presentedToasts = new Stack<Toast>();
 
         private double _duration = ToastDuration.Regular;
         private ToastPosition _position = ToastPosition.Bottom;
@@ -20,6 +21,7 @@ namespace ToastSample
         private bool _showShadow = true;
         private bool _blockTouches;
         private bool _autoDismiss = true;
+        private bool _progressIndicator;
         private ToastAnimator _animator = new FadeAnimator();
         private UIViewController _parentController;
 
@@ -37,7 +39,8 @@ namespace ToastSample
             dismissButton.Clicked += (sender, e) => 
             {
                 // Try to dismiss current toast. It will work only if AutoDismiss is false
-                _current?.Dismiss();
+                if (_presentedToasts.Count != 0)
+                    _presentedToasts.Pop().Dismiss();
             };
 
             tableView.Source = new SamplesTableViewSource(action => 
@@ -52,6 +55,9 @@ namespace ToastSample
                         break;
                     case SampleAction.SampleMessageWithTitle:
                         ShowSampleWithTitle();
+                        break;
+                    case SampleAction.SampleProgressIndicator:
+                        ShowJustProgressIndicator();
                         break;
                 }
             }, (action, isOn) => 
@@ -79,6 +85,9 @@ namespace ToastSample
                     case SampleAction.SettingsAutoDismiss:
                         _autoDismiss = isOn;
                         break;
+                    case SampleAction.SettingsProgressIndicator:
+                        _progressIndicator = isOn;
+                        break;
                 }
             }, action =>
             {
@@ -99,12 +108,20 @@ namespace ToastSample
 
         private void ShowSampleSingleLine()
         {
-            _current = CreateToast().Show();
+            var toast = CreateToast().Show();
+            _presentedToasts.Push(toast);
         }
 
         private void ShowSampleWithTitle()
         {
-            _current = CreateToast().SetTitle(ToastTitle).Show();
+            var toast = CreateToast().SetTitle(ToastTitle).Show();
+            _presentedToasts.Push(toast);
+        }
+
+        private void ShowJustProgressIndicator()
+        {
+            var toast = CreateToast().SetMessage(null).SetTitle(null).SetProgressIndicator(true).Show();
+            _presentedToasts.Push(toast);
         }
 
         private Toast CreateToast()
@@ -117,6 +134,7 @@ namespace ToastSample
                         .SetParentController(_parentController)
                         .SetBlockTouches(_blockTouches)
                         .SetAutoDismiss(_autoDismiss)
+                        .SetProgressIndicator(_progressIndicator)
                         .SetDismissButtonTitle("Dismiss");
         }
     }

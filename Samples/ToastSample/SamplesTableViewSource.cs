@@ -25,7 +25,8 @@ namespace ToastSample
                     new TableItem("Remove Shadow", SampleAction.SettingsRemoveShadow, false),
                     new TableItem("Scale Animation", SampleAction.SettingsScaleAnimation, false),
                     new TableItem("Block Touches", SampleAction.SettingsBlockTouches, false),
-                    new TableItem("Auto Dismiss", SampleAction.SettingsAutoDismiss, true)
+                    new TableItem("Auto Dismiss", SampleAction.SettingsAutoDismiss, true),
+                    new TableItem("Progress Indicator", SampleAction.SettingsProgressIndicator, false)
                 }
             },
             new TableSection
@@ -34,7 +35,8 @@ namespace ToastSample
                 Items = new TableItem[]
                 {
                     new TableItem("Single Message", SampleAction.SampleSingleMessage),
-                    new TableItem("Message with Title", SampleAction.SampleMessageWithTitle)
+                    new TableItem("Message with Title", SampleAction.SampleMessageWithTitle),
+                    new TableItem("Just Progress Indicator", SampleAction.SampleProgressIndicator)
                 }
             },
             new TableSection

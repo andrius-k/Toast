@@ -1,20 +1,25 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 using GlobalToast.Extensions;
 namespace GlobalToast.ToastViews
 {
-    public class TitleMessageToastView : BaseToastView
+    public class ProgressTitleMessageToastView : BaseToastView
     {
+        public UIActivityIndicatorView ActivityIndicator { get; set; }
         public UILabel TitleLabel { get; set; }
         public UILabel MessageLabel { get; set; }
 
-        public TitleMessageToastView(Toast toast) : base(toast)
+        public ProgressTitleMessageToastView(Toast toast) : base(toast)
         {
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+
+            ActivityIndicator = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
+            ActivityIndicator.StartAnimating();
+            ActivityIndicator.TranslatesAutoresizingMaskIntoConstraints = false;
+            AddSubview(ActivityIndicator);
 
             TitleLabel = new UILabel();
             TitleLabel.Text = Toast.Title;
@@ -42,12 +47,17 @@ namespace GlobalToast.ToastViews
         {
             base.ConstrainChildren();
 
+            ActivityIndicator.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            ActivityIndicator.SafeCenterYAnchor().ConstraintEqualTo(this.SafeCenterYAnchor()).Active = true;
+            ActivityIndicator.SafeBottomAnchor().ConstraintLessThanOrEqualTo(this.SafeBottomAnchor(), -Toast.Layout.PaddingBottom).Active = true;
+            ActivityIndicator.SafeTopAnchor().ConstraintGreaterThanOrEqualTo(this.SafeTopAnchor(), Toast.Layout.PaddingTop).Active = true;
+
             TitleLabel.SafeTrailingAnchor().ConstraintEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
-            TitleLabel.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            TitleLabel.SafeLeadingAnchor().ConstraintEqualTo(ActivityIndicator.SafeTrailingAnchor(), Toast.Layout.PaddingLeading).Active = true;
             TitleLabel.SafeTopAnchor().ConstraintEqualTo(this.SafeTopAnchor(), Toast.Layout.PaddingTop).Active = true;
             TitleLabel.SafeBottomAnchor().ConstraintEqualTo(MessageLabel.SafeTopAnchor(), -Toast.Layout.Spacing).Active = true;
 
-            MessageLabel.SafeLeadingAnchor().ConstraintEqualTo(this.SafeLeadingAnchor(), Toast.Layout.PaddingLeading).Active = true;
+            MessageLabel.SafeLeadingAnchor().ConstraintEqualTo(ActivityIndicator.SafeTrailingAnchor(), Toast.Layout.PaddingLeading).Active = true;
             MessageLabel.SafeTrailingAnchor().ConstraintEqualTo(this.SafeTrailingAnchor(), -Toast.Layout.PaddingTrailing).Active = true;
             MessageLabel.SafeBottomAnchor().ConstraintEqualTo(this.SafeBottomAnchor(), -Toast.Layout.PaddingBottom).Active = true;
         }

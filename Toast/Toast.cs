@@ -11,6 +11,7 @@ namespace GlobalToast
         public double Duration { get; protected set; } = ToastDuration.Regular;
         public ToastPosition Position { get; protected set; } = ToastPosition.Bottom;
         public bool ShowShadow { get; protected set; } = true;
+        public bool ProgressIndicator { get; protected set; }
         public Func<Toast, BaseToastView> ToastViewFactory { get; protected set; }
         public UIViewController ParentController { get; protected set; }
         public bool BlockTouches { get; protected set; }
@@ -92,6 +93,15 @@ namespace GlobalToast
         }
 
         /// <summary>
+        /// Sets the message of the toast
+        /// </summary>
+        public Toast SetMessage(string message)
+        {
+            Message = message;
+            return this;
+        }
+
+        /// <summary>
         /// Sets the title of the toast
         /// </summary>
         public Toast SetTitle(string title)
@@ -124,6 +134,15 @@ namespace GlobalToast
         public Toast SetShowShadow(bool show)
         {
             ShowShadow = show;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets whether shadow should be drawn behind the frame of the toast
+        /// </summary>
+        public Toast SetProgressIndicator(bool progress)
+        {
+            ProgressIndicator = progress;
             return this;
         }
 
@@ -218,6 +237,9 @@ namespace GlobalToast
 
             if (Animator == null)
                 Animator = GlobalAnimator;
+
+            if (ProgressIndicator)
+                AutoDismiss = false;
             
             ToastView = GetToastView();
 
@@ -228,9 +250,10 @@ namespace GlobalToast
 
             if(AutoDismiss)
             {
+                ToastView.AnimateShow();
                 new ToastTimer(ToastView, Duration, () =>
                 {
-                    ToastView.RemoveFromSuperview();
+                    Remove();
                 }).Start();
             }
             else
@@ -239,10 +262,7 @@ namespace GlobalToast
                 ToastView.DismissAction = () =>
                 {
                     ToastView.DismissAction = null;
-                    ToastView.AnimateHide(() => 
-                    {
-                        ToastView.RemoveFromSuperview();
-                    });
+                    Remove();
                 };
             }
 
@@ -259,27 +279,42 @@ namespace GlobalToast
                 ToastView?.DismissAction?.Invoke();
         }
 
+        private void Remove()
+        {
+            ToastView.InvokeOnMainThread(() =>
+            {
+                ToastView.AnimateHide(() =>
+                {
+                    ToastView.RemoveFromSuperview();
+                });
+            });
+        }
+
         /// <summary>
         /// Returns the view of the toast that will be presented
         /// </summary>
-        protected virtual BaseToastView GetToastView()
+        private BaseToastView GetToastView()
         {
             if (ToastViewFactory != null)
                 return ToastViewFactory(this);
 
-            if (AutoDismiss == false)
+            if (Title == null)
             {
-                if (Title != null)
-                    return new DismissibleTitleMessageToastView(this);
+                if (ProgressIndicator)
+                    return new ProgressMessageToastView(this);
+                else if (AutoDismiss)
+                    return new MessageToastView(this);
                 else
-                    return new DismissibleMessageToastView(this); 
+                    return new DismissibleMessageToastView(this);
             }
             else
             {
-                if (Title != null)
+                if (ProgressIndicator)
+                    return new ProgressTitleMessageToastView(this);
+                else if (AutoDismiss)
                     return new TitleMessageToastView(this);
                 else
-                    return new MessageToastView(this);   
+                    return new DismissibleTitleMessageToastView(this);
             }
         }
     }

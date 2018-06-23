@@ -22,7 +22,6 @@ namespace GlobalToast
 
         public void Start()
         {
-            _toastView.AnimateShow();
             _timer.Elapsed += Timer_Elapsed;
             _timer.Start();
         }
@@ -32,13 +31,7 @@ namespace GlobalToast
             _timer.Elapsed -= Timer_Elapsed;
             _timer.Dispose();
 
-            _toastView.InvokeOnMainThread(() =>
-            {
-                _toastView.AnimateHide(() =>
-                {
-                    _completion.Invoke();
-                });
-            });
+            _completion.Invoke();
         }
     }
 }
