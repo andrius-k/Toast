@@ -12,8 +12,6 @@ namespace GlobalToast.ToastViews
         public NSLayoutConstraint CenterXContraint { get; protected set; }
         public NSLayoutConstraint CenterYContraint { get; protected set; }
 
-        public Action DismissAction { get; set; }
-
         protected Toast Toast { get;  }
 
         public virtual UIView ParentView
@@ -169,11 +167,22 @@ namespace GlobalToast.ToastViews
 
         /// <summary>
         /// Start hide animation.
-        /// Completion will be invoked when animation is finished.
+        /// <paramref name="completion"/> will be invoked when animation is finished.
         /// </summary>
         public virtual void AnimateHide(Action completion)
         {
             Toast.Animator.AnimateHide(this, completion);
+        }
+
+        public virtual void Dismiss()
+        {
+            InvokeOnMainThread(() =>
+            {
+                AnimateHide(() =>
+                {
+                    RemoveFromSuperview();
+                });
+            });
         }
     }
 }

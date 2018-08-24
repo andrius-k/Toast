@@ -93,6 +93,24 @@ namespace GlobalToast
         }
 
         /// <summary>
+        /// Helper method that creates a progress indicator (spinner) 
+        /// without any text and immediately shows it.
+        /// </summary>
+        public static Toast ShowProgressIndicator(ToastPosition position = ToastPosition.Bottom)
+        {
+            var toast = new Toast
+            {
+                Message = null,
+                Title = null,
+                Position = position,
+                ProgressIndicator = true
+            };
+            toast.Show();
+
+            return toast;
+        }
+
+        /// <summary>
         /// Sets the message of the toast
         /// </summary>
         public Toast SetMessage(string message)
@@ -248,46 +266,25 @@ namespace GlobalToast
 
             ToastView.Setup();
 
+            ToastView.AnimateShow();
+
             if(AutoDismiss)
             {
-                ToastView.AnimateShow();
                 new ToastTimer(ToastView, Duration, () =>
                 {
-                    Remove();
+                    Dismiss();
                 }).Start();
-            }
-            else
-            {
-                ToastView.AnimateShow();
-                ToastView.DismissAction = () =>
-                {
-                    ToastView.DismissAction = null;
-                    Remove();
-                };
             }
 
             return this;
         }
 
         /// <summary>
-        /// If <see cref="AutoDismiss"/> is false this method will dismiss 
-        /// shown toast without user input.
+        /// Dismisses the toast without user input.
         /// </summary>
         public void Dismiss()
         {
-            if(AutoDismiss == false)
-                ToastView?.DismissAction?.Invoke();
-        }
-
-        private void Remove()
-        {
-            ToastView.InvokeOnMainThread(() =>
-            {
-                ToastView.AnimateHide(() =>
-                {
-                    ToastView.RemoveFromSuperview();
-                });
-            });
+            ToastView?.Dismiss();
         }
 
         /// <summary>

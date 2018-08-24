@@ -61,11 +61,6 @@ namespace GlobalToast.ToastViews
             Dismiss();
         }
 
-        protected virtual void Dismiss()
-        {
-            DismissAction?.Invoke();
-        }
-
         public override void RemoveFromSuperview()
         {
             base.RemoveFromSuperview();

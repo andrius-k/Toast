@@ -38,7 +38,6 @@ namespace ToastSample
 
             dismissButton.Clicked += (sender, e) => 
             {
-                // Try to dismiss current toast. It will work only if AutoDismiss is false
                 if (_presentedToasts.Count != 0)
                     _presentedToasts.Pop().Dismiss();
             };
@@ -108,7 +107,7 @@ namespace ToastSample
 
         private void ShowSampleSingleLine()
         {
-            var toast = CreateToast().Show();
+            var toast = CreateToast().Show();  
             _presentedToasts.Push(toast);
         }
 
