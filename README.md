@@ -167,7 +167,7 @@ If you want to add additional parameters to your custom toast view (like images,
 
 ## Backwards compatibility 
 
-Tested on iOS 10 and 11. Should work on previous versions as well.
+Tested on iOS 10, 11 and 12. Should work on previous versions as well.
 
 ## Setup
 
