@@ -31,7 +31,6 @@ namespace GlobalToast.ToastViews
             DismissButton.TranslatesAutoresizingMaskIntoConstraints = false;
             DismissButton.TitleLabel.LineBreakMode = Toast.Appearance.DismissButtonLineBreakMode;
             DismissButton.TouchUpInside += DismissButton_TouchUpInside;
-            DismissButton.TranslatesAutoresizingMaskIntoConstraints = false;
             AddSubview(DismissButton);
         }
 
