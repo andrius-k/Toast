@@ -17,7 +17,7 @@ namespace GlobalToast
         public bool BlockTouches { get; protected set; }
         public bool AutoDismiss { get; protected set; } = true;
         public string DismissButtonTitle { get; protected set; } = "Dismiss";
-        public Action DismissCallBack { get; set; }
+        public Action DismissCallBack { get; protected set; }
 
         public ToastAppearance Appearance { get; protected set; }
         private static ToastAppearance _globalAppearance = new ToastAppearance();
