@@ -178,8 +178,6 @@ namespace GlobalToast.ToastViews
         {
             InvokeOnMainThread(() =>
             {
-                Toast.DismissCallBack();
-
                 AnimateHide(() =>
                 {
                     RemoveFromSuperview();
