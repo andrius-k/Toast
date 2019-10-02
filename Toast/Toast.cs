@@ -17,13 +17,14 @@ namespace GlobalToast
         public bool BlockTouches { get; protected set; }
         public bool AutoDismiss { get; protected set; } = true;
         public string DismissButtonTitle { get; protected set; } = "Dismiss";
+        public Action DismissCallBack { get; set; }
 
         public ToastAppearance Appearance { get; protected set; }
         private static ToastAppearance _globalAppearance = new ToastAppearance();
-        public static ToastAppearance GlobalAppearance 
+        public static ToastAppearance GlobalAppearance
         {
             get => _globalAppearance;
-            set => _globalAppearance = value ?? 
+            set => _globalAppearance = value ??
                 throw new ArgumentException("GlobalAppearance can't be null");
         }
 
@@ -93,7 +94,7 @@ namespace GlobalToast
         }
 
         /// <summary>
-        /// Helper method that creates a progress indicator (spinner) 
+        /// Helper method that creates a progress indicator (spinner)
         /// without any text and immediately shows it.
         /// </summary>
         public static Toast ShowProgressIndicator(ToastPosition position = ToastPosition.Bottom)
@@ -202,7 +203,7 @@ namespace GlobalToast
         }
 
         /// <summary>
-        /// Sets the parent controller. 
+        /// Sets the parent controller.
         /// Toast will be presented inside this controller instead of being added to KeyWindow.
         /// Layout guides will be taken into account when displaying toast.
         /// </summary>
@@ -243,6 +244,15 @@ namespace GlobalToast
         }
 
         /// <summary>
+        /// Sets a callback action for the dismiss button.
+        /// </summary>
+        public Toast SetDismissCallback(Action callback)
+        {
+            DismissCallBack = callback;
+            return this;
+        }
+
+        /// <summary>
         /// Presents the toast
         /// </summary>
         public Toast Show()
@@ -258,7 +268,7 @@ namespace GlobalToast
 
             if (ProgressIndicator)
                 AutoDismiss = false;
-            
+
             ToastView = GetToastView();
 
             ToastView.ParentView.AddSubview(ToastView);
