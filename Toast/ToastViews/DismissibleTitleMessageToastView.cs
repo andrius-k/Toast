@@ -57,8 +57,6 @@ namespace GlobalToast.ToastViews
 
         private void DismissButton_TouchUpInside(object sender, EventArgs e)
         {
-            Toast.DismissCallBack?.Invoke();
-
             Dismiss();
         }
 

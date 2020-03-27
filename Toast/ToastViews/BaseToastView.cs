@@ -182,6 +182,8 @@ namespace GlobalToast.ToastViews
                 {
                     RemoveFromSuperview();
                 });
+
+                Toast.DismissCallback?.Invoke();
             });
         }
     }
