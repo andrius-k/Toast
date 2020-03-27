@@ -27,7 +27,7 @@ namespace ToastSample
 
         public ViewController1 (IntPtr handle) : base (handle)
         {
-
+            
         }
 
         public override void ViewDidLoad()
@@ -36,13 +36,13 @@ namespace ToastSample
 
             Title = "Toast Sample";
 
-            dismissButton.Clicked += (sender, e) =>
+            dismissButton.Clicked += (sender, e) => 
             {
                 if (_presentedToasts.Count != 0)
                     _presentedToasts.Pop().Dismiss();
             };
 
-            tableView.Source = new SamplesTableViewSource(action =>
+            tableView.Source = new SamplesTableViewSource(action => 
             {
                 switch(action)
                 {
@@ -59,7 +59,7 @@ namespace ToastSample
                         ShowJustProgressIndicator();
                         break;
                 }
-            }, (action, isOn) =>
+            }, (action, isOn) => 
             {
                 switch (action)
                 {
@@ -107,7 +107,7 @@ namespace ToastSample
 
         private void ShowSampleSingleLine()
         {
-            var toast = CreateToast().Show();
+            var toast = CreateToast().Show();  
             _presentedToasts.Push(toast);
         }
 
