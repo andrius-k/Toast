@@ -16,8 +16,8 @@ namespace GlobalToast.ToastViews
 
         public virtual UIView ParentView
         {
-            get => Toast.ParentController != null ? 
-                        Toast.ParentController.View : 
+            get => Toast.ParentController != null ?
+                        Toast.ParentController.View :
                         UIApplication.SharedApplication.KeyWindow;
         }
 
@@ -82,7 +82,7 @@ namespace GlobalToast.ToastViews
                 BottomContraint = this.SafeBottomAnchor().ConstraintLessThanOrEqualTo(GetBottomAnchor(), -Toast.Layout.MarginBottom);
                 BottomContraint.Active = true;
             }
-            
+
             LeadingContraint = this.SafeLeadingAnchor().ConstraintGreaterThanOrEqualTo(ParentView.SafeLeadingAnchor(), Toast.Layout.MarginLeading);
             TrailingContraint = this.SafeTrailingAnchor().ConstraintLessThanOrEqualTo(ParentView.SafeTrailingAnchor(), -Toast.Layout.MarginTrailing);
             CenterXContraint = this.SafeCenterXAnchor().ConstraintEqualTo(ParentView.SafeCenterXAnchor());
@@ -96,7 +96,7 @@ namespace GlobalToast.ToastViews
         /// </summary>
         protected virtual void ConstrainChildren()
         {
-            
+
         }
 
         /// <summary>
@@ -182,6 +182,8 @@ namespace GlobalToast.ToastViews
                 {
                     RemoveFromSuperview();
                 });
+
+                Toast.DismissCallback?.Invoke();
             });
         }
     }

@@ -133,6 +133,10 @@ namespace ToastSample
                         .SetParentController(_parentController)
                         .SetBlockTouches(_blockTouches)
                         .SetAutoDismiss(_autoDismiss)
+                        .SetDismissCallback(() =>
+                        {
+                            // perform something amazing here.
+                        })
                         .SetProgressIndicator(_progressIndicator)
                         .SetDismissButtonTitle("Dismiss");
         }
