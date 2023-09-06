@@ -1,12 +1,8 @@
-using Foundation;
-using System;
-using UIKit;
-
 namespace ToastSample
 {
     public partial class ViewController3 : UIViewController
     {
-        public ViewController3 (IntPtr handle) : base (handle)
+        public ViewController3(IntPtr handle) : base(handle)
         {
         }
 

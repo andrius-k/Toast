@@ -1,8 +1,4 @@
-﻿using System;
-using Foundation;
-using UIKit;
-using System.Linq;
-namespace ToastSample
+﻿namespace ToastSample
 {
     public class SamplesTableViewSource : UITableViewSource
     {
@@ -83,11 +79,11 @@ namespace ToastSample
             cell.SelectionStyle = UITableViewCellSelectionStyle.Default;
             cell.AccessoryView = null;
 
-            if(item.ItemType == TableItemType.Toggle)
+            if (item.ItemType == TableItemType.Toggle)
             {
                 var toggle = new UISwitch();
                 toggle.On = item.ToggleIsOn;
-                toggle.ValueChanged += (sender, e) => 
+                toggle.ValueChanged += (sender, e) =>
                 {
                     item.ToggleIsOn = toggle.On;
                     _toggleChanged?.Invoke(item.Action, item.ToggleIsOn);
@@ -95,11 +91,11 @@ namespace ToastSample
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
                 cell.AccessoryView = toggle;
             }
-            else if(item.ItemType == TableItemType.MultipleActions)
+            else if (item.ItemType == TableItemType.MultipleActions)
             {
                 var segmentedControl = new UISegmentedControl(item.ActionsAndTitles.Select(t => t.Item2).ToArray());
                 segmentedControl.SelectedSegment = item.SelectedAction;
-                segmentedControl.ValueChanged += (sender, e) => 
+                segmentedControl.ValueChanged += (sender, e) =>
                 {
                     int selectedSegment = (int)segmentedControl.SelectedSegment;
                     item.SelectedAction = selectedSegment;
