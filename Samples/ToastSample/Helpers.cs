@@ -1,5 +1,4 @@
-﻿using System;
-namespace ToastSample
+﻿namespace ToastSample
 {
     public class TableSection
     {
@@ -23,7 +22,7 @@ namespace ToastSample
         /// <summary>
         /// UISegmentedControll with each action will be displayed
         /// </summary>
-        public TableItem(string title, params (SampleAction, string)[] actionsAndTitles) : this (title, 0, actionsAndTitles)
+        public TableItem(string title, params (SampleAction, string)[] actionsAndTitles) : this(title, 0, actionsAndTitles)
         {
         }
 
@@ -61,9 +60,9 @@ namespace ToastSample
         {
             get
             {
-                if(ItemType == TableItemType.Toggle)
+                if (ItemType == TableItemType.Toggle)
                     return SelectedAction == -1 ? false : true;
-                
+
                 return false;
             }
             set

@@ -1,15 +1,14 @@
-﻿namespace GlobalToast
-{
-    public static class ToastDuration
-    {
-        /// <summary>
-        /// 2 seconds
-        /// </summary>
-        public const double Regular = 2000;
+﻿namespace GlobalToast;
 
-        /// <summary>
-        /// 3.5 seconds
-        /// </summary>
-        public const double Long = 3500;
-    }
+public static class ToastDuration
+{
+    /// <summary>
+    /// 2 seconds
+    /// </summary>
+    public const double Regular = 2000;
+
+    /// <summary>
+    /// 3.5 seconds
+    /// </summary>
+    public const double Long = 3500;
 }

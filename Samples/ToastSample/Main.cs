@@ -1,6 +1,4 @@
-﻿using UIKit;
-
-namespace ToastSample
+﻿namespace ToastSample
 {
     public class Application
     {

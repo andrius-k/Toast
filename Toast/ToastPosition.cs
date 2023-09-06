@@ -1,9 +1,8 @@
-﻿namespace GlobalToast
+﻿namespace GlobalToast;
+
+public enum ToastPosition
 {
-    public enum ToastPosition
-    {
-        Bottom,
-        Top,
-        Center
-    }
+    Bottom,
+    Top,
+    Center
 }

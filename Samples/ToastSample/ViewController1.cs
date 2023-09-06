@@ -1,9 +1,5 @@
-using System;
-using UIKit;
 using GlobalToast;
 using GlobalToast.Animation;
-using GlobalToast.ToastViews;
-using System.Collections.Generic;
 
 namespace ToastSample
 {
@@ -25,9 +21,9 @@ namespace ToastSample
         private ToastAnimator _animator = new FadeAnimator();
         private UIViewController _parentController;
 
-        public ViewController1 (IntPtr handle) : base (handle)
+        public ViewController1(IntPtr handle) : base(handle)
         {
-            
+
         }
 
         public override void ViewDidLoad()
@@ -36,20 +32,20 @@ namespace ToastSample
 
             Title = "Toast Sample";
 
-            dismissButton.Clicked += (sender, e) => 
+            dismissButton.Clicked += (sender, e) =>
             {
                 if (_presentedToasts.Count != 0)
                     _presentedToasts.Pop().Dismiss();
             };
 
-            tableView.Source = new SamplesTableViewSource(action => 
+            tableView.Source = new SamplesTableViewSource(action =>
             {
-                switch(action)
+                switch (action)
                 {
-                    case SampleAction.NavigationOpenController :
+                    case SampleAction.NavigationOpenController:
                         PerformSegue("navigateSegue", this);
                         break;
-                    case SampleAction.SampleSingleMessage :
+                    case SampleAction.SampleSingleMessage:
                         ShowSampleSingleLine();
                         break;
                     case SampleAction.SampleMessageWithTitle:
@@ -59,7 +55,7 @@ namespace ToastSample
                         ShowJustProgressIndicator();
                         break;
                 }
-            }, (action, isOn) => 
+            }, (action, isOn) =>
             {
                 switch (action)
                 {
@@ -107,7 +103,7 @@ namespace ToastSample
 
         private void ShowSampleSingleLine()
         {
-            var toast = CreateToast().Show();  
+            var toast = CreateToast().Show();
             _presentedToasts.Push(toast);
         }
 
