@@ -1,6 +1,8 @@
 ﻿using System;
 using GlobalToast.ToastViews;
 using System.Timers;
+using Timer = System.Timers.Timer;
+
 namespace GlobalToast
 {
     public class ToastTimer

@@ -1,84 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A2B14D2-E89F-440E-A099-8B3C35B307D0}</ProjectGuid>
-    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFramework>net7.0-ios</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>GlobalToast</RootNamespace>
-    <AssemblyName>Toast</AssemblyName>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <PackOnBuild>true</PackOnBuild>
-    <PackageId>Toast.iOS</PackageId>
-    <PackageVersion>1.2.0</PackageVersion>
-    <Authors>Andrius Kirilovas</Authors>
-    <Description>Toast messages for Xamarin.iOS. It is possible to add toast to KeyWindow of the app so it is presented even during view controller transitions.</Description>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>10.0</SupportedOSPlatformVersion>
+    <PackageVersion>1.3.0-alpha1</PackageVersion>
+  <Authors>Andrius Kirilovas</Authors>
+    <Description>Toast messages for .net iOS. It is possible to add toast to KeyWindow of the app so it is presented even during view controller transitions.</Description>
     <PackageProjectUrl>https://github.com/andrius-k/Toast</PackageProjectUrl>
     <PackageReleaseNotes>Added ability to display a toast in the middle of the screen using ToastPosition.Center.</PackageReleaseNotes>
-    <Summary>Toast messages for Xamarin.iOS</Summary>
+    <Summary>Toast messages for .net iOS</Summary>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchFastDev>true</MtouchFastDev>
-    <IOSDebuggerPort>51601</IOSDebuggerPort>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchLink>SdkOnly</MtouchLink>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.iOS" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="ToastViews\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Animation\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Toast.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToastDuration.cs" />
-    <Compile Include="ToastPosition.cs" />
-    <Compile Include="ToastViews\MessageToastView.cs" />
-    <Compile Include="ToastViews\BaseToastView.cs" />
-    <Compile Include="ToastTimer.cs" />
-    <Compile Include="ToastAppearance.cs" />
-    <Compile Include="ToastViews\TitleMessageToastView.cs" />
-    <Compile Include="Extensions\UIViewExtensions.cs" />
-    <Compile Include="Animation\ToastAnimator.cs" />
-    <Compile Include="Animation\FadeAnimator.cs" />
-    <Compile Include="Animation\ScaleAnimator.cs" />
-    <Compile Include="ToastLayout.cs" />
-    <Compile Include="ToastViews\DismissibleMessageToastView.cs" />
-    <Compile Include="ToastViews\DismissibleTitleMessageToastView.cs" />
-    <Compile Include="ToastViews\ProgressMessageToastView.cs" />
-    <Compile Include="ToastViews\ProgressTitleMessageToastView.cs" />
-  </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.2\build\NuGet.Build.Packaging.targets')" />
 </Project>

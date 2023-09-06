@@ -121,7 +121,7 @@ namespace GlobalToast.ToastViews
             }
             else
             {
-                return Toast.ParentController.TopLayoutGuide.GetBottomAnchor();
+                return Toast.ParentController.TopLayoutGuide.BottomAnchor;
             }
         }
 
@@ -137,7 +137,7 @@ namespace GlobalToast.ToastViews
             }
             else
             {
-                return Toast.ParentController.BottomLayoutGuide.GetTopAnchor();
+                return Toast.ParentController.BottomLayoutGuide.TopAnchor;
             }
         }
 

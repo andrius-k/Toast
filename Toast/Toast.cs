@@ -1,7 +1,5 @@
-﻿using System;
-using UIKit;
+﻿using GlobalToast.Animation;
 using GlobalToast.ToastViews;
-using GlobalToast.Animation;
 namespace GlobalToast
 {
     public class Toast
@@ -229,7 +227,7 @@ namespace GlobalToast
         public Toast SetAutoDismiss(bool autoDismiss)
         {
             AutoDismiss = autoDismiss;
-            if(autoDismiss == false)
+            if (autoDismiss == false)
                 BlockTouches = true;
             return this;
         }
@@ -248,7 +246,7 @@ namespace GlobalToast
         /// </summary>
         public Toast SetDismissCallback(Action callback)
         {
-            DismissCallBack = callback;
+            DismissCallback = callback;
             return this;
         }
 
@@ -278,7 +276,7 @@ namespace GlobalToast
 
             ToastView.AnimateShow();
 
-            if(AutoDismiss)
+            if (AutoDismiss)
             {
                 new ToastTimer(ToastView, Duration, () =>
                 {
